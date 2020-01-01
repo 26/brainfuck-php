@@ -97,12 +97,12 @@ class Brainfuck {
 
                 break;
             case ',':
-                if(!isset($this->input[$this->input_pointer])) {
-                    $this->instruction_pointer++;
-                    return;
+                if(!isset($this->input[$this->input_pointer - 1])) {
+                    die("\nEnd of input reached\n");
+                } else if(isset($this->input[$this->input_pointer])) {
+                    $this->cells[$this->data_pointer] = ord($this->input[$this->input_pointer]);
                 }
 
-                $this->cells[$this->data_pointer] = ord($this->input[$this->input_pointer]);
                 $this->input_pointer++;
 
                 break;
